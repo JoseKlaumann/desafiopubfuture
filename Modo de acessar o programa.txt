@@ -1,0 +1,24 @@
+***************************** Dentro do java *************************************
+- Bliblioteca utilizada: mysql-connector-java-8.0.27
+
+- Para fazer a conexão com o banco de dados é necessário modificar os dados de acesso na pasta db.properties nos campos:
+* user;
+* password;
+* dburl;
+
+- Achei mais prático ter um método a mais, o "findById", assim consigo manipular as tabelas com mais flexibilidade.
+E coloquei um atributo a mais também o "Id". 
+
+- No momento que for fazer o insert ou update, as datas foram implementadas como String e elas devem ser escritas no formato (yyyymmdd) 
+sem nenhuma separação por barra ou qualquer outra coisa.
+Exemplo: a data 10/05/2021 deve ser escrita 20210510 para que o sistema entenda e faça o que está sendo pedido.
+
+- Os campos de 'descricao' devem ser preenchidos sem espaços para que sejam cadastrados no banco.
+
+- As classes de Receita, Despesa e Conta estao no pacote 'application' e Estão implementadas separadamente. Lá será possível mexer com os dados conforme
+foi pedido no desafio.
+
+*************************** Dentro do MySql ***********************************************
+- Apenas no 'use' deve ser colocado o nome no banco que será utilizado
+
+- Para criar as tabelas no MySql é só copiar do bloco de notas que está junto no git hub.

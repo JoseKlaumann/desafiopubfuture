@@ -1,0 +1,88 @@
+use ; #Utilizar o nome do banco a ser utilizado
+#drop table receita;
+CREATE TABLE receita (
+Id int(11) NOT NULL AUTO_INCREMENT,
+valor double not null,
+datarecebimento date not null,
+datarecebimentoesperado date not null,
+descricao varchar(40) not null,
+conta int (15) not null,
+tiporeceita varchar (15) not null,
+PRIMARY KEY (Id)
+);
+
+#drop table despesa;
+create table despesa (
+Id int(11) NOT NULL AUTO_INCREMENT,
+valor decimal (6,2) not null,
+datapagamento date not null,
+datapagamentoesperado date not null,
+tipodespesa varchar(15) not null,
+conta int (15) not null,
+PRIMARY KEY (Id)
+);
+
+#drop table conta;
+create table conta (
+Id int(11) NOT NULL AUTO_INCREMENT,
+saldo decimal (12,2) not null,
+tipoconta varchar(25) not null,
+instituicaofinanceira varchar (25) not null,
+PRIMARY KEY (Id)
+);
+
+insert into receita (
+valor, datarecebimento, datarecebimentoesperado, 
+descricao, conta, tiporeceita) values
+('10000', '2021-10-05', '2022-01-07', 'estanacontadaviacredi', '10247416', 'salario'),
+('10000', '2021-12-24', '2022-01-07', 'estanacontadaviacredi', '10247416', 'bonus'),  
+('10000', '2021-11-13', '2022-01-07', 'estanacontadaviacredi', '10247416', 'premio'),
+('10000', '2022-01-15', '2022-01-07', 'estanacontadaviacredi', '10247416', 'salario');   
+
+select * from receita;  
+
+select * from receita where datarecebimento
+between ('2021-10-05') and ('2021-12-24');
+
+select * from receita where tiporeceita = "salario";
+
+select * from receita order by datarecebimento;
+
+update receitas
+set valor = 5000, datarecebimento = '2021-05-16', datarecebimentoesperado = '2021-05-04', 
+descricao = "venda", conta = 10247416, tiporeceita = "pgtdocliente"
+where Id = 3;
+
+delete from receita where Id = 2;
+
+insert into despesa (
+valor, datapagamento, datapagamentoesperado, tipodespesa, conta) values
+('3000', '2021-03-06', '2021-03-10', 'agualuz', '10247416'),
+('7000', '2021-10-16', '2021-10-05', 'internet', '10247416'),
+('80.40', '2021-07-25', '2021-08-10', 'aluguel', '10247416'),
+('430.45', '2021-12-06', '2022-01-10', 'aluguel', '10247416');
+
+select * from despesa;
+
+select * from despesa where datapagamento 
+between ('2021-03-06') and ('2021-10-20');
+
+select * from despesa where tipodespesa = 'aluguel';
+
+insert into conta (
+saldo, tipoconta, instituicaofinanceira) values
+('15000', 'contacorrente', 'viacredi'),
+('1000', 'poupanca', 'viacredi'),
+('300.46', 'carteira', 'pessoal'),
+('1600', 'aplicacao', 'bolsadevalores');
+
+select * from conta;
+
+update conta
+set saldo = 3000
+where Id = 1;
+
+SELECT instituicaofinanceira,  
+SUM(conta.saldo) "saldo"
+FROM conta
+group by instituicaofinanceira;
